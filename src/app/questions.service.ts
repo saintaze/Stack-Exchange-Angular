@@ -8,13 +8,13 @@ import { Question, Questions } from './questions.interface';
   providedIn: 'root'
 })
 export class QuestionsService {
-  apiUrl = 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&site=stackoverflow&pagesize=100&';
+  apiUrl = 'https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=activity&site=stackoverflow&pagesize=100&';
   questions: Question[];
 
   constructor(private http: HttpClient) {}
 
   getQuestions(searchTerm: string): Observable<Question[]>{
-    const searchParam = `intitle=${searchTerm}`;
+    const searchParam = `q=${searchTerm}`;
     return this.http.get<Questions>(this.apiUrl + searchParam).pipe(
       map(data => data.items)
     );
@@ -28,4 +28,6 @@ export class QuestionsService {
     return this.questions.find(q => q.question_id === id);
   }
 }
+
+
 

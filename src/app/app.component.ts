@@ -7,11 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Stack Exchange Angular';
-  searchTerm: string;
-
-  onSearch(searchInputEl: HTMLInputElement){
-    this.searchTerm = searchInputEl.value;
-    searchInputEl.value = '';
-    console.log(this.searchTerm);
-  }
 }
