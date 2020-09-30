@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../questions.interface';
 import { QuestionsService } from '../questions.service';
+import { mockQuestions} from '../data';
+
 
 @Component({
   selector: 'app-questions',
@@ -10,6 +12,14 @@ import { QuestionsService } from '../questions.service';
 export class QuestionsComponent implements OnInit {
   questions: Question[];
   searchTerm: string;
+  
+  mockQuestions = mockQuestions.items;
+
+  paginationConfig = {
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems: this.mockQuestions.length
+  };
 
   constructor(private questionsService: QuestionsService) { }
 
@@ -29,6 +39,10 @@ export class QuestionsComponent implements OnInit {
         this.questions = questions;
         console.log(questions)
       });
+  }
+
+  onPageChange(currentPage: number){
+    this.paginationConfig.currentPage = currentPage;
   }
 
 }
