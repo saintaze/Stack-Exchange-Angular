@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'stack-exchange-angular';
+  title = 'Stack Exchange Angular';
+  searchTerm: string;
+
+  onSearch(searchInputEl: HTMLInputElement){
+    this.searchTerm = searchInputEl.value;
+    searchInputEl.value = '';
+    console.log(this.searchTerm);
+  }
 }
