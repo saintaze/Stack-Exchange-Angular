@@ -1,21 +1,20 @@
 
 <div class="row justify-content-center">
-  <div class="col-md-6">
+  <div class="col-md-9 col-lg-6">
 
-    <div class="input-group mt-3 mb-5">
-      <input type="text" class="form-control" placeholder="Enter Question" (keyup.enter)="onSearch(searchInput)"
+    <div class="input-group  mb-5">
+      <input type="text" class="form-control" placeholder="Search..." (keyup.enter)="onSearch(searchInput)"
         #searchInput>
-      <div class="input-group-append">
-        <button class="btn btn-primary" (click)="onSearch(searchInput)">Search</button>
-      </div>
+      <i class="fas fa-search"></i>
     </div>
 
-    <div *ngFor="let question of mockQuestions | paginate: paginationConfig" class="card mb-4">
-      <div class="card-header font-weight-bold">
-        From / {{question.owner.display_name}}
+    <div *ngFor="let question of mockQuestions | paginate: paginationConfig" class="question-box">
+      <div class="question-box-link" (click)="onQuestionClick(question.question_id)">
+        <div class="question-box-question" [innerHTML]="question.title"></div>
       </div>
-      <div class="card-body">
-        <p class="card-text">{{question.title}}</p>
+      <div class="question-box-avatar">
+        <img class="question-box-img" [src]="question.owner.profile_image">
+        <div class="question-box-owner" innerHTML="by {{question.owner.display_name}}"></div>
       </div>
     </div>
 

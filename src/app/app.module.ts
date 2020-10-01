@@ -6,17 +6,19 @@ import { AppComponent } from './app.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionsComponent,
+    QuestionDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

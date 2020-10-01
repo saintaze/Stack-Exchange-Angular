@@ -3,13 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Question, Questions } from './questions.interface';
+import { mockQuestions } from './data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsService {
   apiUrl = 'https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=activity&site=stackoverflow&pagesize=100&';
-  questions: Question[];
+  // questions: Question[];
+  questions = mockQuestions.items
+  currentPageTrack: 1;
 
   constructor(private http: HttpClient) {}
 
@@ -20,9 +23,9 @@ export class QuestionsService {
     );
   }
 
-  setQuestions(questions: Question[]): void{
-    this.questions = questions;
-  }
+  // setQuestions(questions: Question[]): void{
+  //   this.questions = questions;
+  // }
 
   getQuestion(id: number): Question {
     return this.questions.find(q => q.question_id === id);
