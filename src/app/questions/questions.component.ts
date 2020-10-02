@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Question } from '../questions.interface';
 import { QuestionsService } from '../questions.service';
-import { mockQuestions} from '../data';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,48 +12,43 @@ import { Router } from '@angular/router';
 export class QuestionsComponent implements OnInit {
   questions: Question[];
   searchTerm: string;
-  
-  mockQuestions = mockQuestions.items;
 
   paginationConfig = {
     itemsPerPage: 8,
     currentPage: 1,
-    totalItems: this.mockQuestions.length
+    totalItems: 0
   };
 
-  constructor(private questionsService: QuestionsService, private router: Router) { }
+  constructor(private questionsService: QuestionsService) { }
 
   ngOnInit(): void {
-    this.setCurrentPage();
+    this.initQuestionsAndCurrentPage();
   }
 
-  onSearch(searchInputEl: HTMLInputElement) {
+  initQuestionsAndCurrentPage(): void {
+    this.paginationConfig.currentPage = this.questionsService.lastVisitedPage;
+    this.questions = this.questionsService.questions;
+  }
+
+  onSearch(searchInputEl: HTMLInputElement): void{
     this.searchTerm = searchInputEl.value;
     this.getQuestions(this.searchTerm);
     searchInputEl.value = '';
-    console.log(this.searchTerm);
   }
 
-  // getQuestions(searchTerm: string){
-  //   this.questionsService.getQuestions(searchTerm)
-  //     .subscribe(questions => {
-  //       this.questions = questions;
-  //       this.questionsService.setQuestions(questions);
-  //       console.log(questions)
-  //     });
-  // }
+  getQuestions(searchTerm: string): void {
+    this.questionsService.getQuestions(searchTerm)
+      .subscribe(questions => {
+        this.questions = questions;
+        this.paginationConfig.totalItems = questions.length;
+        this.paginationConfig.currentPage = 1;
+      });
+  }
 
-  onPageChange(currentPage: number){
+  onPageChange(currentPage: number): void {
     this.paginationConfig.currentPage = currentPage;
+    this.questionsService.lastVisitedPage = currentPage;
   }
 
-  setCurrentPage(): void {
-    this.paginationConfig.currentPage = this.questionsService.currentPageTrack;
-  }
-
-  onQuestionClick(questionId): void {
-    this.questionsService.currentPageTrack = this.paginationConfig.currentPage;
-    this.router.navigateByUrl(`/questions/${questionId}`);
-  }
  
 }

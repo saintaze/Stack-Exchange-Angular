@@ -1,23 +1,27 @@
-
 <div class="row justify-content-center">
   <div class="col-md-9 col-lg-6">
 
-    <div class="search-input  mb-5">
+    <div class="search-input mb-5">
       <input type="text" class="form-control" placeholder="Search..." (keyup.enter)="onSearch(searchInput)"
         #searchInput>
       <i class="fas fa-search"></i>
     </div>
 
-    <div *ngFor="let question of mockQuestions | paginate: paginationConfig" class="question-box">
-      <div class="question-box-link" (click)="onQuestionClick(question.question_id)">
+    <div *ngFor="let question of questions | paginate: paginationConfig" class="question-box">
+      <!-- <div class="question-box-link" (click)="onQuestionClick(question.question_id)">
         <div class="question-box-question" [innerHTML]="question.title"></div>
-      </div>
+      </div> -->
+
+      <a routerLink="/questions/{{question.question_id}}" class="question-box-link">
+        <div class="question-box-question" [innerHTML]="question.title"></div>
+      </a>
+
       <div class="question-box-avatar">
         <img class="question-box-img" [src]="question.owner.profile_image">
         <div class="question-box-owner" innerHTML="by {{question.owner.display_name}}"></div>
       </div>
     </div>
 
-    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+    <pagination-controls *ngIf="questions.length" (pageChange)="onPageChange($event)"></pagination-controls>
   </div>
 </div>

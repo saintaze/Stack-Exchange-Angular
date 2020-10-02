@@ -3,33 +3,31 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Question, Questions } from './questions.interface';
-import { mockQuestions } from './data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsService {
   apiUrl = 'https://api.stackexchange.com/2.2/search/advanced?order=desc&sort=activity&site=stackoverflow&pagesize=100&';
-  // questions: Question[];
-  questions = mockQuestions.items
-  currentPageTrack: 1;
+  questions: Question[] = [];
+  lastVisitedPage = 1;
 
   constructor(private http: HttpClient) {}
 
   getQuestions(searchTerm: string): Observable<Question[]>{
     const searchParam = `q=${searchTerm}`;
     return this.http.get<Questions>(this.apiUrl + searchParam).pipe(
-      map(data => data.items)
+      map(data => {
+        this.questions = data.items;
+        return data.items;
+      })
     );
   }
-
-  // setQuestions(questions: Question[]): void{
-  //   this.questions = questions;
-  // }
 
   getQuestion(id: number): Question {
     return this.questions.find(q => q.question_id === id);
   }
+
 }
 
 
