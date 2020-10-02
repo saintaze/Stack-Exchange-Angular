@@ -7,6 +7,8 @@
       <i class="fas fa-search"></i>
     </div>
 
+    <div class="loading" *ngIf="isLoading">Loading...</div>
+
     <div *ngFor="let question of questions | paginate: paginationConfig" class="question-box">
       <a routerLink="/questions/{{question.question_id}}" class="question-box-link">
         <div class="question-box-question" [innerHTML]="question.title"></div>

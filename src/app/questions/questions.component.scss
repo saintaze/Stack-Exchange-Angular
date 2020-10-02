@@ -94,5 +94,24 @@ pagination-controls {
   }
 }
 
+.loading {
+  text-align: center;
+  animation: pulsate .6s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(.09);
+  }
+
+  0% {
+    transform: scale(1);
+  }
+
+  100%{
+    transform: scale(1.09);
+  }
+}
+
 
 

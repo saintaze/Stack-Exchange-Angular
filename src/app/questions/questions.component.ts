@@ -12,7 +12,8 @@ import { QuestionsService } from '../questions.service';
 export class QuestionsComponent implements OnInit {
   questions: Question[];
   searchTerm: string;
-
+  
+  isLoading = false;
   paginationConfig = {
     itemsPerPage: 8,
     currentPage: 1,
@@ -39,9 +40,12 @@ export class QuestionsComponent implements OnInit {
 
   getQuestions(searchTerm: string): void {
     if(!searchTerm.trim().length) return;
-
+    this.isLoading = true;
     this.questionsService.getQuestions(searchTerm)
-      .subscribe(_ => this.initQuestionsAndMetaData());
+      .subscribe(_ => {
+        this.initQuestionsAndMetaData();
+        this.isLoading = false;
+      });
   }
 
   onPageChange(currentPage: number): void {
