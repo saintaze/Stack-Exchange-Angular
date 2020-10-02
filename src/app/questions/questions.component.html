@@ -9,7 +9,11 @@
 
     <div class="loading" *ngIf="isLoading">Loading...</div>
 
-    <div *ngFor="let question of questions | paginate: paginationConfig" class="question-box">
+    <div 
+      *ngFor="let question of questions | paginate: paginationConfig; first as isFirst" 
+      class="question-box" 
+      [ngStyle]="{borderTop: isFirst ? '1px solid #eff0f1' : ''}"
+    >
       <a routerLink="/questions/{{question.question_id}}" class="question-box-link">
         <div class="question-box-question" [innerHTML]="question.title"></div>
       </a>
