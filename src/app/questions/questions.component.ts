@@ -22,12 +22,13 @@ export class QuestionsComponent implements OnInit {
   constructor(private questionsService: QuestionsService) { }
 
   ngOnInit(): void {
-    this.initQuestionsAndCurrentPage();
+    this.initQuestionsAndMetaData();
   }
 
-  initQuestionsAndCurrentPage(): void {
-    this.paginationConfig.currentPage = this.questionsService.lastVisitedPage;
+  initQuestionsAndMetaData() {
     this.questions = this.questionsService.questions;
+    this.paginationConfig.totalItems = this.questions.length;
+    this.paginationConfig.currentPage = this.questionsService.lastVisitedPage;
   }
 
   onSearch(searchInputEl: HTMLInputElement): void{
@@ -37,12 +38,10 @@ export class QuestionsComponent implements OnInit {
   }
 
   getQuestions(searchTerm: string): void {
+    if(!searchTerm.trim().length) return;
+
     this.questionsService.getQuestions(searchTerm)
-      .subscribe(questions => {
-        this.questions = questions;
-        this.paginationConfig.totalItems = questions.length;
-        this.paginationConfig.currentPage = 1;
-      });
+      .subscribe(_ => this.initQuestionsAndMetaData());
   }
 
   onPageChange(currentPage: number): void {
@@ -50,5 +49,6 @@ export class QuestionsComponent implements OnInit {
     this.questionsService.lastVisitedPage = currentPage;
   }
 
- 
 }
+
+

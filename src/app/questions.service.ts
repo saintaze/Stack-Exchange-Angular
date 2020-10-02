@@ -19,6 +19,7 @@ export class QuestionsService {
     return this.http.get<Questions>(this.apiUrl + searchParam).pipe(
       map(data => {
         this.questions = data.items;
+        this.lastVisitedPage = 1;
         return data.items;
       })
     );
