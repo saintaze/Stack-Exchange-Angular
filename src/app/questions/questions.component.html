@@ -8,7 +8,8 @@
     </div>
 
     <div class="loading" *ngIf="isLoading">Loading...</div>
-
+    <div class="no-match" *ngIf="!questions.length && !isLoading && !initialLoad">No match :(</div>
+    
     <div 
       *ngFor="let question of questions | paginate: paginationConfig; first as isFirst" 
       class="question-box" 

@@ -98,6 +98,11 @@ pagination-controls {
   width: 100%;
 }
 
+.no-match {
+  text-align: center;
+  margin-top: -2.2rem;
+}
+
 @keyframes pulsate {
   0% {
     transform: scale(1);

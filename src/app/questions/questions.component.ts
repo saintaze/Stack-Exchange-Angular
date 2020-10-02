@@ -14,6 +14,7 @@ export class QuestionsComponent implements OnInit {
   searchTerm: string;
   
   isLoading = false;
+  initialLoad = true;
   paginationConfig = {
     itemsPerPage: 8,
     currentPage: 1,
@@ -45,6 +46,7 @@ export class QuestionsComponent implements OnInit {
       .subscribe(_ => {
         this.initQuestionsAndMetaData();
         this.isLoading = false;
+        this.initialLoad = false;
       });
   }
 
