@@ -1,4 +1,4 @@
-.input-group{
+.search-input{
   position: relative;
   
   input {
@@ -19,6 +19,7 @@
   .fa-search {
     position: absolute;
     height: 100%;
+    top: 0;
     left: .6rem;
     color: #ccc;
     display: flex;
@@ -78,6 +79,11 @@
 pagination-controls {
   margin-top: 3rem;
   display: inline-block;
+}
+
+.ngx-pagination .current {
+  border-radius: 2px;
+  background-color: #0077cc !important;
 }
 
 
