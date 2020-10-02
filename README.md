@@ -22,7 +22,7 @@ clone repo
 run `ng serve`
 
 # Live Version
-#### URL: [Seach Questions](https://stack-exchange-angular.vercel.app/questions)
+#### URL: [Seach Questions](https://stack-exchange-angular.ayezahmed.vercel.app/)
 
 # Author
 Saintaze [@saintaze](https://github.com/saintaze/)
