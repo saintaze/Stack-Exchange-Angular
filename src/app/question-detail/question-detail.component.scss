@@ -4,7 +4,7 @@
 
 .question {
   display: flex;
-  align-items: flex-start;
+  justify-content: center;
 
   @media screen and (max-width: 600px) {
     flex-direction: column;

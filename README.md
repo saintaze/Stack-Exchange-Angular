@@ -12,6 +12,7 @@ An app in which you can search questions on stack exchange.
 + SASS
 + Angular
 + Bootstrap
++ Stack Exchange API (Search)
 
 ### Getting Started
 clone repo
@@ -21,7 +22,7 @@ clone repo
 run `ng serve`
 
 # Live Version
-#### URL: [Seach Questions](https://cookies-privacy-angular.vercel.app/)
+#### URL: [Seach Questions](https://stack-exchange-angular.vercel.app/questions)
 
 # Author
 Saintaze [@saintaze](https://github.com/saintaze/)
