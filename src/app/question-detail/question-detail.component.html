@@ -3,42 +3,50 @@
 <div class="row justify-content-center">
   <div class="col-md-10">
 
-  <div class="question">
-    <div class="question-image-section">
-      <div class="question-image-box">
-        <img class="question-image" [src]="question.owner.profile_image" alt="avatar">
-        <div class="question-reputation">
-          <span class="question-reputation-count">{{question.owner.reputation | number}}</span>
-          <span class="question-reputation-title">reputation</span>
+  <div *ngIf="question; else noQuestion">
+    <div class="question">
+      <div class="question-image-section">
+        <div class="question-image-box">
+          <img class="question-image" [src]="question.owner.profile_image" alt="avatar">
+          <div class="question-reputation">
+            <span class="question-reputation-count">{{question.owner.reputation | number}}</span>
+            <span class="question-reputation-title">reputation</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="question-detail-section">
-      <div class="question-owner">
-        <div class="question-owner-name" [innerHTML]="question.owner.display_name"></div>
-        <div class="question-back" (click)="goBack()">go back</div>
-      </div>
-      <div class="question-header">Question stats</div>
-      <div class="question-tags">
-        <span class="question-tag" *ngFor="let tag of question.tags">{{tag}}</span>
-      </div>
-      <div class="question-stats">
-        <div class="question-views">
-          <div class="question-views-count">{{question.view_count | number}}</div>
-          <div class="question-views-count-title">Views</div>
+      <div class="question-detail-section">
+        <div class="question-owner">
+          <div class="question-owner-name" [innerHTML]="question.owner.display_name"></div>
+          <div class="question-back" (click)="goBack()">go back</div>
         </div>
-        <div class="question-answers">
-          <div class="question-answers-count">{{question.answer_count | number}}</div>
-          <div class="question-answers-count-title">Answers</div>
+        <div class="question-header">Question stats</div>
+        <div class="question-tags">
+          <span class="question-tag" *ngFor="let tag of question.tags">{{tag}}</span>
         </div>
-        <div class="question-votes">
-          <div class="question-votes-count">{{question.score | number}}</div>
-          <div class="question-votes-count-title">votes</div>
+        <div class="question-stats">
+          <div class="question-views">
+            <div class="question-views-count">{{question.view_count | number}}</div>
+            <div class="question-views-count-title">Views</div>
+          </div>
+          <div class="question-answers">
+            <div class="question-answers-count">{{question.answer_count | number}}</div>
+            <div class="question-answers-count-title">Answers</div>
+          </div>
+          <div class="question-votes">
+            <div class="question-votes-count">{{question.score | number}}</div>
+            <div class="question-votes-count-title">votes</div>
+          </div>
         </div>
+        <div class="question-title" [innerHTML]="question.title"></div>
       </div>
-      <div class="question-title" [innerHTML]="question.title"></div>
     </div>
   </div>
+  
+  <ng-template #noQuestion>
+    <div class="no-question">Oops... question could not be found!</div>
+  </ng-template>
+
+
 
   </div>
 </div>

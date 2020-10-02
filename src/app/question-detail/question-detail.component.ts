@@ -24,7 +24,6 @@ export class QuestionDetailComponent implements OnInit {
 
   getQuestion(): void{
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log(id)
     const question = this.questionsService.getQuestion(id);
     this.question = question;
   }

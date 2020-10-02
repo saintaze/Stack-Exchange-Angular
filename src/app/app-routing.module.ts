@@ -4,9 +4,10 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 import { QuestionsComponent } from './questions/questions.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'questions', pathMatch: 'full'},
+  {path: '', redirectTo: '/questions', pathMatch: 'full'},
   {path: 'questions', component: QuestionsComponent},
   {path: 'questions/:id', component: QuestionDetailComponent},
+  {path: '**', redirectTo: '/questions', pathMatch: 'full' }
 ];
 
 @NgModule({

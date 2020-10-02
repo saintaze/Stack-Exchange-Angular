@@ -29,10 +29,6 @@
     z-index: -1;
   }
 
-  &-image-box {
-    
-  }
-
   &-image{
     width: 100%;
   }
@@ -59,10 +55,6 @@
   }
 
   // detail
-
-  &-detail-section {
-
-  }
 
   &-owner {
     font-weight: bold;
@@ -133,7 +125,6 @@
     margin: .5rem 0 .4rem;
     display: flex;
     line-height: 1.2;
-
    
    & > * {
      padding-right: 1.8rem;
@@ -142,9 +133,6 @@
 
   // views
 
-  &-views {
-
-  }
 
   &-views-count {
     font-weight: bold;
@@ -159,10 +147,6 @@
 
   // answers
 
-  &-answers {
-    
-  }
-
   &-answers-count {
     font-weight: bold;
     font-size: 1rem;
@@ -175,10 +159,6 @@
   }
 
   // votes
-
-  &-votes {
-    
-  }
 
   &-votes-count {
     font-weight: bold;
@@ -194,7 +174,7 @@
   // question
 
   &-title {
-    margin-top: 0.7rem;
+    margin-top: 0.5rem;
     border-top: 0.7px solid #ddd;
     padding-top: 1rem;
     font-size: 1.1rem;
@@ -203,7 +183,10 @@
     line-height: 1.2;
   }
 
+}
 
-
-
+.no-question {
+  font-size: 1.2rem;
+  text-align: center;
+  color: brown;
 }
